@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "classes",
+  "info": {
+    "name": "class",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Name",
+      "required": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 180
+    },
+    "Price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 10
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Sale": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Sport": {
+      "via": "classes",
+      "model": "category"
+    },
+    "type": {
+      "model": "type"
+    }
+  }
+}
